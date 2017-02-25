@@ -1,10 +1,6 @@
-from flask import Flask, request
-import json
-
-app = Flask(__name__)
-
-def shock_logic(magnitude):
-    return 'TODO'
+from frying_pan.api import app
+from frying_pan import logic
+from flask import request
 
 
 @app.route("/", methods=['GET'])
@@ -16,9 +12,5 @@ def hello():
 def shock():
     payload = request.get_json()
     magnitude = payload['magnitude']
-    shock_logic(magnitude)
+    logic.shock(magnitude)
     return 'Shocked with magnitude of {}'.format(magnitude)
-
-
-if __name__ == "__main__":
-    app.run()
